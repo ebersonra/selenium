@@ -1,0 +1,16 @@
+<configuration debug="false">
+
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener"/>
+
+    <appender name="config" class="com.selenium.marionette.config.SeleniumMarionetteConfig">
+        <prefix>config</prefix>
+    </appender>
+
+    <root level="debug">
+        <appender-ref ref="config"/>
+    </root>
+
+    <looger name="com.selenium.marionette.config.SeleniumMarionetteConfig">
+        <appender-ref ref="config"/>
+    </looger>
+</configuration>

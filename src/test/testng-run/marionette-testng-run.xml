@@ -1,0 +1,74 @@
+<!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd">
+<suite name="marionette-system-tests">
+    <test name="accessMenuAndListByNameAndClickButtonEdit">
+        <groups>
+            <run>
+                <include name="editByName"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="com.selenium.marionette.system.test.SeleniumSystemTests"></class>
+        </classes>
+    </test>
+
+    <test name="accessMenuAndConsultByName">
+        <groups>
+            <run>
+                <include name="consultByName"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="com.selenium.marionette.system.test.SeleniumSystemTests"></class>
+        </classes>
+    </test>
+
+    <test name="accessMenuAndListAll">
+        <groups>
+            <run>
+                <include name="listAll_noParameters"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="com.selenium.marionette.system.test.SeleniumSystemTests"></class>
+        </classes>
+    </test>
+
+    <test name="accessMenu">
+        <groups>
+            <run>
+                <include name="accessMenu_noParameters"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="com.selenium.marionette.system.test.SeleniumSystemTests"></class>
+        </classes>
+    </test>
+
+    <test name="accessPageLoginWithUsernameAndPassword">
+        <groups>
+            <run>
+                <include name="login_noParameters"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="com.selenium.marionette.system.test.SeleniumSystemTests"></class>
+        </classes>
+    </test>
+
+    <test name="accessPageLogin">
+        <groups>
+            <run>
+                <include name="accessPageLogin_noParameters"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="com.selenium.marionette.system.test.SeleniumSystemTests"></class>
+        </classes>
+    </test>
+</suite>
