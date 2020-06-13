@@ -38,8 +38,7 @@ ext {
     commonsLangVersion ='3.0'
     apacheCommonsIoVersion = '1.3.2'
 
-    suiteFileNsgTi = project.hasProperty('nsg-ti')
-    suiteFileNsgTu = project.hasProperty('nsg-tu')
+    runSuite = project.hasProperty("testngRun");
     suiteFile = ''
 }
 
@@ -68,7 +67,9 @@ test {
         // To generate reports by TestNG library
         useDefaultListeners = true
 
-        suiteFile = './src/test/testng-run/marionette-testng-run.xml'
+        if(runSuite){
+            suiteFile = './src/test/testng-run/marionette-testng-run.xml'
+        }
 
         def dir = System.getProperty("testngReportOutput")
         outputDirectory = dir ? file(dir) : file("target/testng-output")
