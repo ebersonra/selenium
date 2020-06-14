@@ -16,11 +16,6 @@ public @interface SeleniumTest {
     Class<?> driver() default FirefoxDriver.class;
 
     /**
-     * Classe de testes. <b>value = MyTests.class</b>
-     * */
-    Class<?> value() default Class.class;
-
-    /**
      * Url da applicação.
      * */
     String url() default "https://localhost:8090";
