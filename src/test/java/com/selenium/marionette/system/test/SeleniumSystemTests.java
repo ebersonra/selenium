@@ -1,75 +1,35 @@
 package com.selenium.marionette.system.test;
 
-import com.selenium.marionette.common.SeleniumMarionetteDSL;
 import com.selenium.marionette.config.SeleniumMarionetteConfig;
 import com.selenium.marionette.config.SeleniumTest;
+import com.selenium.marionette.system.page.SeleniumSystemPage;
 import com.selenium.marionette.system.test.util.SeleniumDataProvider;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
 
 @SeleniumTest(
+        browser = "chrome",
+        driver = ChromeDriver.class,
         url = "https://www.google.com"
 )
 public class SeleniumSystemTests extends SeleniumMarionetteConfig {
 
-    private SeleniumMarionetteDSL marionetteDSL;
-
-    public SeleniumSystemTests(){
-        marionetteDSL = new SeleniumMarionetteDSL(super.getWebDriver());
-    }
+    private SeleniumSystemPage seleniumSystemPage;
 
     @Test(
             dataProvider = "SeleniumDataProvider",
             dataProviderClass = SeleniumDataProvider.class,
-            groups = "accessPageLogin_noParameters"
+            groups = "searchGoogle"
     )
-    public void systemAccessPageLogin() {
+    public void accessSearchGoogle(String... arguments) {
 
+        getSeleniumSystemPage().searchByText(arguments[0]);
     }
 
-    @Test(
-            dataProvider = "SeleniumDataProvider",
-            dataProviderClass = SeleniumDataProvider.class,
-            groups = "login_noParameters"
-    )
-    public void systemAccessPageLoginWithUsernameAndPassword() throws InterruptedException {
-
-    }
-
-    @Test(
-            dataProvider = "SeleniumDataProvider",
-            dataProviderClass = SeleniumDataProvider.class,
-            groups = "accessMenu_noParameters"
-    )
-    public void systemAccessMenu() throws InterruptedException {
-
-    }
-
-    @Test(
-            dataProvider = "SeleniumDataProvider",
-            dataProviderClass = SeleniumDataProvider.class,
-            groups = "listAll_noParameters"
-    )
-    public void systemAccessMenuAndListAll() throws InterruptedException {
-
-    }
-
-    @Test(
-            dataProvider = "SeleniumDataProvider",
-            dataProviderClass = SeleniumDataProvider.class,
-            groups = "consultByName"
-    )
-    public void systemAccessMenuAndConsultByName(String partnerName, String partnerCpf) throws InterruptedException {
-
-    }
-
-    @Test(
-            dataProvider = "SeleniumDataProvider",
-            dataProviderClass = SeleniumDataProvider.class,
-            groups = "editByName"
-    )
-    public void systemAccessMenuAndListByNameAndClickButtonEdit(String partnerName) throws InterruptedException {
-
+    public SeleniumSystemPage getSeleniumSystemPage() {
+        seleniumSystemPage = PageFactory.initElements(getWebDriver(), SeleniumSystemPage.class);
+        return seleniumSystemPage;
     }
 }

@@ -18,8 +18,25 @@ public class SeleniumMarionetteDSL {
         element.sendKeys(textValue);
     }
 
+    public void findElementByXpathAndSendKeys(String xpathValue, String textValue){
+        WebElement element = findElementByXpath(xpathValue);
+        element.clear();
+        element.sendKeys(textValue);
+    }
+
+    public void findElementByNameAndSendKeys(String name, String textValue){
+        WebElement element = findElementByName(name);
+        element.clear();
+        element.sendKeys(textValue);
+    }
+
     public void onClickElementById(String idValue){
         WebElement element = findElementById(idValue);
+        element.click();
+    }
+
+    public void onClickElementByName(String nameValue){
+        WebElement element = findElementByName(nameValue);
         element.click();
     }
 
@@ -66,6 +83,11 @@ public class SeleniumMarionetteDSL {
     public void onClickElementByXpath(String idValue){
         WebElement element = findElementByXpath(idValue);
         element.click();
+    }
+
+    private WebElement findElementByName(String name){
+        WebElement element = getDriver().findElement(By.name(name));
+        return element;
     }
 
     private WebElement findElementByTagName(String tagName){

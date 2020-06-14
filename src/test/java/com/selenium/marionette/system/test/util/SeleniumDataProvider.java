@@ -11,22 +11,10 @@ public class SeleniumDataProvider extends SeleniumCommonValue {
         Object[][] groupsArray = null;
 
         for(String group : context.getIncludedGroups()){
-            if(group.equalsIgnoreCase("consultByName")){
+            if(group.equalsIgnoreCase("searchGoogle")){
 
                 groupsArray = new Object[][]{
-                        {"Eberson Ramos", "11122233344"}
-                };
-
-                break;
-            }else if(group.equalsIgnoreCase("editByName")){
-
-                groupsArray = new Object[][]{
-                        {"Eberson Ramos"}
-                };
-            }else if(group.contains("_noParameters")){
-
-                groupsArray = new Object[][]{
-                        {}
+                        {"Selenium"}
                 };
                 break;
             }
