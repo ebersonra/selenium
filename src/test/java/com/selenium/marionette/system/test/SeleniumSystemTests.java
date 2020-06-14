@@ -4,6 +4,7 @@ import com.selenium.marionette.common.SeleniumMarionetteDSL;
 import com.selenium.marionette.config.SeleniumMarionetteConfig;
 import com.selenium.marionette.config.SeleniumTest;
 import com.selenium.marionette.system.test.util.SeleniumDataProvider;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
 

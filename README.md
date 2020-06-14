@@ -6,8 +6,17 @@
 - JDK 11
 - TestNG
 
-# Execução da suite de testes com grupos e dataProvider.
+# Inicia a execução de uma suite de testes usando um arquivo xml com as configurações da suite, dos testes, dos grupos e da classe de testes. Esse comando irá executar todos os testes contidos na classe de testes.
 $ gradle clean test -PtestngRun
+
+## -Ptestn/gRun define o valor da variavel "runSuite" criada no arquivo build.gradle, que indica a execução dos testes usando o arquivo xml configurado com a suite de testes.
+
+ext {
+ .....
+ .....
+ .....
+ runSuite = project.hasProperty("testngRun")
+}
 
 # Anotação Customizada SeleniumTest
 
@@ -30,13 +39,17 @@ String env() default "dev";
 # Arquvivo marionette_dev.properties
 ## Usado para carregar o driver pelo System.setProperty()
 marionette.firefox-webdriver = webdriver.gecko.driver
-## Configuração default é para Linux. Para Windowns basta fazer o download do mesmo driver, mas com a extenção *.exe e colocar na pasta desta propriedade ${marionette.path-webdriver}
-marionette.firefox-geckodriver-filename = geckodriver
+
+## Propriedades do geckodriver linux/windows
+marionette.firefox-linux-geckodriver-filename = geckodriver
+marionette.firefox-windows-geckodriver-filename = geckodriver.exe
 
 ## Usado para carregar o driver pelo System.setProperty()
 marionette.chrome-webdriver  = webdriver.chrome.driver
-## Configuração default é para Linux. Para Windowns basta fazer o download do mesmo driver, mas com a extenção *.exe e colocar na pasta desta propriedade ${marionette.path-webdriver}
-marionette.chrome-chromedriver-filename = chromedriver
+
+## Propriedades do chromedriver linux/windows
+marionette.chrome-linux-chromedriver-filename = chromedriver
+marionette.chrome-windows-chromedriver-filename = chromedriver.exe
 
 # Path default para os files dos webdrivers
 marionette.path-webdriver = src/test/resources/webdrivers/

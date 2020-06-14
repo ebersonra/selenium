@@ -1,6 +1,7 @@
 package com.selenium.marionette.config;
 
 import com.selenium.marionette.common.SeleniumMarionetteBrowser;
+import org.apache.commons.lang3.SystemUtils;
 import org.openqa.selenium.WebDriver;
 
 import java.io.File;
@@ -9,6 +10,7 @@ import java.io.InputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
+import java.nio.file.NoSuchFileException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -52,11 +54,15 @@ public class SeleniumMarionetteWebDriver {
             if (browser.equalsIgnoreCase(SeleniumMarionetteBrowser.FIREFOX.getBrowserName())) {
 
                 System.setProperty(this.props.getProperty("marionette.firefox-webdriver"),
-                        findFile(this.props.getProperty("marionette.firefox-geckodriver-filename")));
+                        findFile(this.props.getProperty("marionette.firefox-"
+                                .concat(getOsName())
+                                .concat("-geckodriver-filename"))));
             } else if (browser.equalsIgnoreCase(SeleniumMarionetteBrowser.CHROME.getBrowserName())) {
 
                 System.setProperty(this.props.getProperty("marionette.chrome-webdriver"),
-                        findFile(this.props.getProperty("marionette.chrome-chromedriver-filename")));
+                        findFile(this.props.getProperty("marionette.chrome-"
+                                .concat(getOsName())
+                                .concat("-chromedriver-filename"))));
             }
 
             setWebDriver((WebDriver) seleniumTest.driver().getDeclaredConstructor().newInstance());
@@ -65,6 +71,10 @@ public class SeleniumMarionetteWebDriver {
             getWebDriver().manage().window().maximize();
         }
         return getWebDriver();
+    }
+
+    private String getOsName() {
+        return SystemUtils.OS_NAME.replaceAll("[0-9]","").trim().toLowerCase();
     }
 
     private Properties getProps() throws IOException {
@@ -87,10 +97,13 @@ public class SeleniumMarionetteWebDriver {
 
     private String findFile(String filename) throws IOException {
 
-        if(new File(this.props.getProperty("marionette.path-webdriver").concat(filename)).exists()){
-            return this.props.getProperty("marionette.path-webdriver").concat(filename);
+        String pathWebDriver = this.props.getProperty("marionette.path-webdriver")
+                .concat(getOsName().concat(File.separator)).concat(filename);
+
+        if(new File(pathWebDriver).exists()){
+            return pathWebDriver;
         }
 
-        return "";
+        throw new NoSuchFileException(filename, pathWebDriver, "Path name or file name not correct...");
     }
 }

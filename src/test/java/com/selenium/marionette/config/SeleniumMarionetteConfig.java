@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 import static com.selenium.marionette.common.SeleniumMarionetteCaseFormat.toLowerUnderscore;
 
@@ -44,15 +45,17 @@ public class SeleniumMarionetteConfig implements ITest {
     public void afterTestMethod(ITestResult result) throws Exception {
 
         TakesScreenshot takesScreenshot = (TakesScreenshot) getWebDriver();
-        File screenshot = takesScreenshot.getScreenshotAs(OutputType.FILE);
+        File screenshot = takesScreenshot != null ? takesScreenshot.getScreenshotAs(OutputType.FILE) : null;
 
-        String methodName = toLowerUnderscore(result.getMethod().getMethodName());
+        if(!Objects.isNull(screenshot)){
+            String methodName = toLowerUnderscore(result.getMethod().getMethodName());
 
-        FileUtils.copyFile(screenshot, new File("target".concat(File.separator)
-                .concat("screenshot").concat(File.separator)
-                .concat(result.getTestName()).concat(File.separator)
-                .concat(getToday()).concat(File.separator)
-                .concat(File.separator).concat(methodName).concat(".jpg")));
+            FileUtils.copyFile(screenshot, new File("target".concat(File.separator)
+                    .concat("screenshot").concat(File.separator)
+                    .concat(result.getTestName()).concat(File.separator)
+                    .concat(getToday()).concat(File.separator)
+                    .concat(File.separator).concat(methodName).concat(".jpg")));
+        }
 
         kill();
     }
