@@ -38,21 +38,21 @@ String env() default "dev";
 
 # Arquvivo marionette_dev.properties
 ## Usado para carregar o driver pelo System.setProperty()
-marionette.firefox-webdriver = webdriver.gecko.driver
+- marionette.firefox-webdriver = webdriver.gecko.driver
 
 ## Propriedades do geckodriver linux/windows
-marionette.firefox-linux-geckodriver-filename = geckodriver
-marionette.firefox-windows-geckodriver-filename = geckodriver.exe
+- marionette.firefox-linux-geckodriver-filename = geckodriver
+- marionette.firefox-windows-geckodriver-filename = geckodriver.exe
 
 ## Usado para carregar o driver pelo System.setProperty()
-marionette.chrome-webdriver  = webdriver.chrome.driver
+- marionette.chrome-webdriver  = webdriver.chrome.driver
 
 ## Propriedades do chromedriver linux/windows
-marionette.chrome-linux-chromedriver-filename = chromedriver
-marionette.chrome-windows-chromedriver-filename = chromedriver.exe
+- marionette.chrome-linux-chromedriver-filename = chromedriver
+- marionette.chrome-windows-chromedriver-filename = chromedriver.exe
 
 # Path default para os files dos webdrivers
-marionette.path-webdriver = src/test/resources/webdrivers/
+- marionette.path-webdriver = src/test/resources/webdrivers/
 
 # Execução dos Testes
 A cada teste executado é criada a pasta target com outras pastas contendo as screenshots dos testes executados por data
