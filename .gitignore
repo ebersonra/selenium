@@ -19,3 +19,5 @@ logs
 /.recommenders
 
 target
+
+/src/test/resources/webdrivers/
